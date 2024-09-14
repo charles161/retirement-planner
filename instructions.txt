@@ -1,0 +1,165 @@
+Project Overview: Create a Retirement Planner App that calculates and visualizes users' retirement plans, including FIRE (Financial Independence, Retire Early) numbers and investment projections for Systematic Investment Plans (SIP). The app should feature interactive charts and a responsive design.
+
+Requirements:
+
+User Inputs:
+
+Personal Details:
+Current Age
+Retirement Age
+Financial Details:
+Monthly Expenses
+Monthly Investment Amount (SIP)
+Expected Investment Return Rate (Annual)
+Inflation Rate (Annual)
+Calculations:
+
+Current Annual Expenses:
+
+makefile
+Copy code
+currentAnnualExpenses = monthlyExpenses * 12
+Future Annual Expenses:
+
+makefile
+Copy code
+yearsToRetirement = retirementAge - currentAge
+futureAnnualExpenses = currentAnnualExpenses * (1 + inflationRate) ** yearsToRetirement
+FIRE Numbers:
+
+makefile
+Copy code
+leanFIRE = futureAnnualExpenses * 20
+fire = futureAnnualExpenses * 25
+fatFIRE = futureAnnualExpenses * 50
+Savings Plan (Monthly Savings Required):
+
+makefile
+Copy code
+r = investmentReturnRate / 12 / 100
+n = yearsToRetirement * 12
+monthlySavings = (fire / (((1 + r) ** n - 1) / r * (1 + r))) * 1.2
+Compounded Savings Over Time: For each month until retirement:
+
+makefile
+Copy code
+totalSavings = previousTotalSavings * (1 + r) + monthlySavings
+SIP Returns:
+
+makefile
+Copy code
+P = monthlyInvestmentAmount
+FV = P * ((1 + r) ** n - 1) / r * (1 + r)
+totalInvestment = P * n
+totalReturns = FV - totalInvestment
+CAGR = ((FV / totalInvestment) ** (1 / yearsToRetirement)) - 1
+absoluteReturn = (totalReturns / totalInvestment) * 100
+Features:
+
+Interactive Charts:
+
+FIRE Projection Chart: Visualize the growth of required retirement funds over time.
+SIP Investment Growth Chart: Display the projected growth of SIP investments until retirement.
+Utilize libraries compatible with React for charting (e.g., Chart.js or Recharts).
+Responsive Design:
+
+Implement a mobile-first approach using Tailwind CSS.
+Ensure all components are responsive across different screen sizes.
+User Experience:
+
+Intuitive input forms with validation.
+Display calculated results clearly with descriptions.
+Include tooltips or info icons explaining financial terms.
+Performance Optimization:
+
+React Server Components (RSC):
+
+Minimize the use of 'use client', 'useEffect', and 'setState'.
+Prefer server-side rendering for data fetching.
+Code Splitting and Dynamic Import:
+
+Use dynamic imports for non-critical components to improve initial load time.
+Image Optimization:
+
+Use WebP format for images.
+Include explicit width and height to prevent layout shifts.
+Implement lazy loading for images.
+Web Vitals Optimization:
+
+Focus on optimizing Largest Contentful Paint (LCP), Cumulative Layout Shift (CLS), and First Input Delay (FID).
+State Management:
+
+Use 'nuqs' for managing URL search parameters and state synchronization.
+Routing and Data Fetching:
+
+Follow Next.js best practices for routing and data fetching.
+Utilize Next.js App Router for route management.
+Code Style and Structure Guidelines:
+
+General:
+
+Write concise, technical TypeScript code with accurate examples.
+Use functional and declarative programming patterns; avoid classes.
+Prefer iteration and modularization over code duplication.
+Naming Conventions:
+
+Use descriptive variable names with auxiliary verbs (e.g., isLoading, hasError).
+Use lowercase with dashes for directories (e.g., components/auth-wizard).
+Favor named exports for components.
+TypeScript Usage:
+
+Use TypeScript for all code.
+Prefer interfaces over types.
+Avoid enums; use maps or literal types instead.
+Use functional components with TypeScript interfaces.
+Syntax and Formatting:
+
+Use the function keyword for pure functions.
+typescript
+Copy code
+function calculateFutureExpenses(params: Params): number {
+  // function body
+}
+Avoid unnecessary curly braces in conditionals; use concise syntax for simple statements.
+typescript
+Copy code
+if (condition) return value;
+Use declarative JSX and self-closing tags where appropriate.
+Component Structure:
+
+Structure files in the following order:
+Exported component
+Subcomponents
+Helper functions
+Static content
+Types and interfaces
+UI and Styling Guidelines:
+
+Component Libraries:
+
+Use Shadcn UI and Radix UI for building accessible and high-quality components.
+Styling:
+
+Utilize Tailwind CSS for utility-first styling.
+Implement responsive design principles with Tailwind's responsive utilities.
+Accessibility:
+
+Ensure all UI components meet WCAG guidelines.
+Use semantic HTML elements and ARIA attributes where necessary.
+Additional Considerations:
+
+Error Handling:
+
+Implement comprehensive error handling and display user-friendly error messages.
+Testing:
+
+Write unit tests for critical functions and components using a testing library like Jest.
+Documentation:
+
+Include comments and documentation for complex logic and calculations.
+Expected Deliverables:
+
+A fully functional Retirement Planner App adhering to the guidelines above.
+Source code organized and formatted according to the specified code style.
+Interactive charts demonstrating FIRE projections and SIP investment growth.
+Responsive UI with a focus on performance and accessibility.
